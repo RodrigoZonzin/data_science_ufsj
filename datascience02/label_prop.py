@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv 
 import random
-
+import sys
 
 def plotar_grafo(G, savefig = False):
     plt.figure(figsize=(8, 6))
@@ -36,7 +36,7 @@ def LabelProp(G, maxIt=10):
 
     #add o proprio vertice como rotulo inicial como propriedades de cada vi em G
     for i in G.nodes: 
-        G.nodes[i]['rotulo'] = i
+        G.nodes[i]['rotulo'] = random.randint(1, 5)
 
 
     mudou = True 
@@ -67,18 +67,20 @@ def LabelProp(G, maxIt=10):
 
 
 
-if '__name__' == "__main__": 
 
+if __name__ == "__main__":
+    #cria um grafo G
     G = nx.DiGraph()
 
-    with open('data/rede2.csv') as f: 
+    # le todos os pares de arestas (u,v) do arquivo csv e add em G
+    with open(sys.argv[1]) as f: 
         linha = csv.reader(f, delimiter=',')
 
         for li in linha: 
             u, v = int(li[0]), int(li[1])
             G.add_edge(u, v)
-            
-    LabelProp(G, 20)
+
+    LabelProp(G, 100)
 
 
 
