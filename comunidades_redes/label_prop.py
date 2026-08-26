@@ -36,7 +36,7 @@ def LabelProp(G, maxIt=10):
 
     #add o proprio vertice como rotulo inicial como propriedades de cada vi em G
     for i in G.nodes: 
-        G.nodes[i]['rotulo'] = random.randint(1, 5)
+        G.nodes[i]['rotulo'] = random.randint(1, 15)
 
 
     mudou = True 
