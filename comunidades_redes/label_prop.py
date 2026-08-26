@@ -5,16 +5,16 @@ import csv
 import random
 import sys
 
-def plotar_grafo(G, savefig = False):
+def plotar_grafo(G, it = None, savefig = False):
     plt.figure(figsize=(8, 6))
     pos = nx.circular_layout(G)
     rotulos = nx.get_node_attributes(G, name='rotulo')
     nx.draw(G, labels=rotulos, pos = pos, node_size=500, node_color="#cca752", alpha=0.85)
 
     if savefig == True: 
-        plt.savefig('results/label_prop.png', dpi = 200)
+        plt.savefig(f'results/label_prop_{it}.png', dpi = 200)
 
-    plt.show()
+    #plt.show()
 
 
 def calc_moda(listaVizinhos): 
@@ -43,7 +43,7 @@ def LabelProp(G, maxIt=10):
     it = 0
 
     while it < maxIt and mudou == True:
-        plotar_grafo(G)
+        plotar_grafo(G, it, savefig=True)
         mudou = False
         ordemVisita = np.array(list(G.nodes()))                 #preciso disso aqui pq o shuffle altera o vetor 
         np.random.shuffle(ordemVisita)
